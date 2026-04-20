@@ -11,6 +11,7 @@ This repository serves as a deep-dive reference into the core concepts of evalua
 4. [Classification Evaluation Metrics](#4-classification-evaluation-metrics)
 5. [Regression Evaluation Metrics](#5-regression-evaluation-metrics)
 6. [Information Theory Concepts](#6-information-theory-concepts)
+7. [Python Libraries Reference: NumPy & Matplotlib](#7-python-libraries-reference-numpy--matplotlib)
 
 ---
 
@@ -194,3 +195,36 @@ Information theory deals with how we quantify "information."
   It is the Sum of Squared Errors (SSE) of the model's line: $\sum (y_{actual} - y_{predicted})^2$. This is literally the leftover distance (error) between the data points and the best-fit line.
 * **Why visualize the p-value computation?**
   By plotting a histogram of F-statistics generated from completely randomized data, you can visually see the distribution of "pure noise". If your actual model's F-statistic sits far to the right, totally outside the bell curve of noise, it provides immediate, visual, intuitive proof that your model's accuracy is not a fluke.
+
+---
+
+## 7. Python Libraries Reference: NumPy & Matplotlib
+
+Throughout the notebook, several standard library functions are used to manipulate data and visualize results manually without relying on high-level machine learning APIs. Here is a brief explanation of these functions.
+
+### NumPy (`np`)
+NumPy is the fundamental package for scientific computing in Python. It provides high-performance multidimensional arrays and tools for working with them.
+
+* **`np.array()`**: Converts a Python list (or other iterable) into a NumPy array, which allows for fast mathematical operations.
+* **`np.zeros(shape)`**: Creates a new array of the specified shape (like a 2x2 matrix) and fills it entirely with zeros.
+* **`np.linspace(start, stop, num)`**: Generates `num` evenly spaced numbers over the interval `[start, stop]`. Useful for creating a smooth x-axis for plotting lines.
+* **`np.mean(array)`**: Calculates the arithmetic mean (average) of the values in the array.
+* **`np.sum(array)`**: Adds up all the elements in the array.
+* **`np.log2(x)`**: Computes the base-2 logarithm of `x`. Frequently used in Information Theory (like calculating Entropy).
+* **`np.random.seed(value)`**: Sets the "seed" for the random number generator. This ensures that random operations (like generating dummy data) produce the exact same results every time the code is run, ensuring reproducibility.
+* **`np.random.normal(loc, scale, size)`**: Draws random samples from a normal (Gaussian) distribution. `loc` is the mean, `scale` is the standard deviation (spread), and `size` is the number of samples. Often used to add random "noise" to data.
+* **`np.random.permutation(array)`**: Randomly shuffles the elements of an array. Used in permutation testing to destroy the real relationship between features and targets.
+
+### Matplotlib (`plt`)
+Matplotlib's `pyplot` module is a collection of functions that make it work like MATLAB. It is used to create charts and graphs.
+
+* **`plt.figure(figsize=(w, h))`**: Creates a new blank figure/canvas with the specified width and height.
+* **`plt.subplots()`**: A convenient way to create a figure and a set of subplots (multiple graphs in one window) at the same time.
+* **`plt.plot(x, y)`**: Plots a 2D line graph of `y` versus `x`.
+* **`plt.scatter(x, y)`**: Plots individual data points (dots) without connecting them with lines.
+* **`plt.hist(x, bins)`**: Computes and draws a histogram of the data `x`, divided into `bins` (bars).
+* **`plt.axhline(y)` / `plt.axvline(x)`**: Draws a straight horizontal (`axhline`) or vertical (`axvline`) line across the entire plot at the specified coordinate.
+* **`plt.title('...')`, `plt.xlabel('...')`, `plt.ylabel('...')`**: Sets the title of the graph and the labels for the X and Y axes, respectively.
+* **`plt.legend()`**: Places a legend on the graph (uses the `label='...'` arguments provided in `plot` or `scatter`).
+* **`plt.rcParams[...]`**: A dictionary that stores global configuration settings for Matplotlib. For example, setting `plt.rcParams['figure.figsize']` changes the default size for all future plots.
+* **`plt.show()`**: Renders and displays the created figure on the screen.
